@@ -1,0 +1,81 @@
+Banco: conc
+
+-- tabela adiministradores (adm)
+CREATE TABLE tbl_adm (
+ id_adm int(11) NOT NULL AUTO_INCREMENT,
+ nome varchar(20) DEFAULT NULL,
+ senha varchar(20) DEFAULT NULL,
+ PRIMARY KEY (id_adm)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+
+-- inserindo ADM de exemplo
+Insert into tbl_adm (nome, senha) values ('adm', 123);
+
+
+-- tabela cientes
+CREATE TABLE tbl_cliente (
+ id_cliente int(11) NOT NULL AUTO_INCREMENT,
+ cod_login int(11) NOT NULL,
+ nome varchar(45) NOT NULL,
+ email varchar(45) NOT NULL,
+ telefone varchar(45) NOT NULL,
+ cidade varchar(45) NOT NULL,
+ estado varchar(45) NOT NULL,
+ CNH varchar(45) NOT NULL,
+ PRIMARY KEY (id_cliente)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Inserindo exemplo de cliente
+INSERT INTO `tbl_cliente` (`cod_login`, `nome`, `email`, `telefone`, `cidade`, `estado`, `CNH`) 
+VALUES ('123', 'Cliente', 'emailxemplo@gmail.com', '0000-0000', 'Exemplo', 'Estado Exemplo', '86732407297');
+
+
+-- tabela promocao
+CREATE TABLE tbl_promocao (
+ id_prom int(11) NOT NULL AUTO_INCREMENT,
+ desconto float NOT NULL,
+ data_exp date NOT NULL,
+ PRIMARY KEY (id_prom)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+
+-- tabela veiculo
+CREATE TABLE `tbl_veiculo` (
+ id int(11) NOT NULL AUTO_INCREMENT,
+ id_prom int(11) DEFAULT NULL,
+ modelo varchar(45) NOT NULL,
+ fabricante varchar(45) NOT NULL,
+ ano int(11) NOT NULL,
+ preco float NOT NULL,
+ foto varchar(40) NOT NULL,
+ tipo varchar(10) NOT NULL,
+ quantidade int(11) NOT NULL,
+ link varchar(40) NOT NULL,
+ PRIMARY KEY (id),
+ KEY id_prom (id_prom),
+ CONSTRAINT id_prom FOREIGN KEY (id_prom) REFERENCES tbl_promocao (id_prom) ON DELETE SET NULL ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4
+
+
+-- tabela venda
+CREATE TABLE tbl_venda (
+ id_venda int(11) NOT NULL AUTO_INCREMENT,
+ id_cliente int(11) NOT NULL,
+ id_veiculo int(11) NOT NULL,
+ form_pag varchar(45) NOT NULL,
+ serv_adi varchar(45) NOT NULL,
+ valor_tot float NOT NULL,
+ desconto float NOT NULL,
+ data date NOT NULL,
+ status varchar(45) NOT NULL,
+ PRIMARY KEY (id_venda),
+ KEY id_cliente (id_cliente),
+ KEY id_veiculo (id_veiculo),
+ CONSTRAINT id_cliente FOREIGN KEY (id_cliente) REFERENCES tbl_cliente (id_cliente) ON DELETE NO ACTION ON UPDATE CASCADE,
+ CONSTRAINT id_veiculo FOREIGN KEY (id_veiculo) REFERENCES tbl_veiculo (id) ON DELETE NO ACTION ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
+
+-- exemplo de venda (só faça após inserir um veiculo, ou a chave id_veiculo não irá existir, dando erro)
+-- INSERT INTO `tbl_venda` (`id_venda`, `id_cliente`, `id_veiculo`, `form_pag`, `serv_adi`, `valor_tot`, `desconto`, `data`, `status`) VALUES (NULL, '1', '0', 'Cartão', 'Nenhum', '40000', '0.2', '2020-04-25', 'Andamento');
+

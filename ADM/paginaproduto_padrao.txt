@@ -1,0 +1,96 @@
+;
+
+session_start();
+ 
+require '../init.php';
+?>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+    <title>:: MATSUMOTO ::</title>
+    
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+    <link rel="stylesheet" type="text/css" href="../font-awesome/css/all.css">
+    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+
+    <!--Começo do codido do Scroww-->
+    <script type="text/javascript">
+        jQuery(document).ready(function($) {
+           $(".scroll").click(function(event){
+        event.preventDefault();
+            $('html,body').animate({scrollTop:$(this.hash).offset().top}, 800);
+           });
+          });
+     </script>
+     <!--fim do codido do Scroww-->
+    
+</head>
+<body>
+    <div class="wrapper">
+    <!--Começo do sidebar-->
+    <div class="sidebar">
+        <h2>MENU</h2>
+        <ul>
+            <li><a href="../index.php"><i class="fas fa-home"></i>Home</a></li>
+            <?php if(isLoggedIn()){?>
+            <li><a href="../panel.php"><i class="fas fa-user"></i>Painel</a></li>
+            <?php }else{ ?>
+            <li><a href="../logar.html"><i class="fas fa-user"></i>Login</a></li>
+            <?php } ?>
+            <li><a href="loja.php"><i class="fas fa-car"></i>Veículos</a></li>
+            <li><a href="#"><i class="fas fa-newspaper"></i>Noticias</a></li>
+            <li><a href="#"><i class="fas fa-address-card"></i>Sobre</a></li>
+           
+        </ul> 
+        
+    </div>
+     <!--termino do sidebar-->
+    <div class="main_content">
+        <div class="header">LOJA</div>  
+        <div class="info">
+    <form method="GET">
+        Pesquise um Veiculo: <input type="text" name="pesquisar">
+    </form>
+<?php if(isset($_GET['pesquisar'])){
+    $pesquisa = $_GET['pesquisar'];
+
+    $PDO = db_connect();
+    $sql = "SELECT link, modelo, quantidade, ano FROM tbl_veiculo WHERE modelo LIKE '%$pesquisa%'";
+
+    $stmt = $PDO->prepare($sql);
+
+    $stmt->execute();
+    while($rows_produtos = $stmt->fetch(PDO::FETCH_ASSOC)){
+        echo "Produto: <a href=".$rows_produtos['link'].">".$rows_produtos['modelo']."-".$rows_produtos['ano']."</a>(".$rows_produtos['quantidade'].")<br>";
+    }
+}
+    $PDO = db_connect();
+    $sql = "SELECT id_prom, modelo, fabricante, ano, preco, foto, quantidade FROM tbl_veiculo WHERE id = '$id'";
+    
+    $stm = $PDO->prepare($sql);
+    
+    $stm->execute();
+    $rows = $stm->fetch(PDO::FETCH_ASSOC);
+     
+    if($rows['id_prom']){
+        $id_prom = $rows['id_prom'];
+        $sql2 = "SELECT desconto FROM tbl_promocao WHERE id_prom = '$id_prom'";
+    
+        $stmt = $PDO->prepare($sql2);
+    
+        $stmt->execute();
+        $desc = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        $valorTotal = $desc['desconto'] * $rows['preco'];
+    }
+    ?>
+    
+    <p><?php echo $rows['modelo'];?>(<?php echo $rows['ano'];?>)</p>
+    <img src="<?php echo $rows['foto'];?>" width="20%" heigth="20%" >
+    <p>Quantidade: <?php echo $rows['quantidade'];?></p>
+    <p>Fabricante: <?php echo $rows['fabricante'];?>
+    <p>Preço: <?php if(isset($valorTotal)){ echo $valorTotal."R$-Promoção!";}else{ echo $rows['preco']."R$";}?></p>
+    
+    
