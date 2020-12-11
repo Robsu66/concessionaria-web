@@ -35,7 +35,7 @@ require 'check.php';
         <ul>
             <li><a href="index.php"><i class="fas fa-home"></i>Home</a></li>
             <li><a href="panel.php"><i class="fas fa-user"></i>Painel</a></li>
-            <li><a href="loja/carrinho.html"><i class="fas fa-car"></i>Veículos</a></li>
+            <li><a href="loja/carrinho.php"><i class="fas fa-car"></i>Veículos</a></li>
             <li><a href="#"><i class="fas fa-newspaper"></i>Noticias</a></li>
             <li><a href="#"><i class="fas fa-address-card"></i>Sobre</a></li>
            
@@ -48,8 +48,8 @@ require 'check.php';
         <div class="info">
 
         <h2>Painel do Usuário</h2>
-        <p>Bem-vindo ao seu painel, <?php echo $_SESSION['name_user']; ?> | <a href="http://localhost/Conc/index.php">Index |</a>
-        <a href="http://localhost/Conc/logout.php">Sair</a> 
+        <p>Bem-vindo ao seu painel, <?php echo $_SESSION['name_user']; ?> | <a href="index.php">Index |</a>
+        <a href="logout.php">Sair</a> 
         </p>
         <br>
         <h2>Informações das suas compras:</h2>
