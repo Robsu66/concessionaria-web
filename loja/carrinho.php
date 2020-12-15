@@ -57,6 +57,7 @@ require '../init.php';
      <!--termino do sidebar-->
       <!--inicio do carrinho-->
 
+
      <div class="main_content"> 
 
         <div class="info">
@@ -67,10 +68,18 @@ require '../init.php';
         </div>
 
         <div class="container" id="lista-productos">
+        <div class="card-deck mb-4 text-center">
+<?php
+$PDO = db_connect();
+$sql = "SELECT * FROM tbl_veiculo";
 
-            <div class="card-deck mb-4 text-center">
+$stmt = $PDO->prepare($sql);
+$stmt->execute();
+    while($stmt->fetch(PDO::FETCH_ASSOC)){
+    for($i=0; $i < 3; ++$i){      
+?>
 
-                <div class="card mb- shadow-sm">
+                <div class="card mb-4 shadow-sm">
                     <div class="card-header">
                         <h4 class="my-0 font-weight-bold">CG 160 Cargo</h4>
                     </div>
@@ -87,152 +96,12 @@ require '../init.php';
                        
                     </div>
                 </div>
+<?php   }; ?>
+    </div>
+    <div class="card-deck mb-3 text-center">
+<?php }; ?>
 
-                <div class="card mb-4 shadow-sm">
-                    <div class="card-header">
-                        <h4 class="my-0 font-weight-bold">CB 1000R </h4>
-                    </div>
-                    <div class="card-body">
-                        <img src="img/moto2.png" class="card-img-top">
-                        <h1 class="card-title pricing-card-title precio">R$<span class="">60.900</span></h1>
-
-                        <ul class="list-unstyled mt-3 mb-4">
-                            <li></li>
-                            <li>MOTOR</li>
-                            <li>PAINEL MULTICOLOR + FULL LED</li>
-                            <li>TECNOLOGIA TBW</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="card mb-4 shadow-sm">
-                    <div class="card-header">
-                        <h4 class="my-0 font-weight-bold">XRE190</h4>
-                    </div>
-                    <div class="card-body">
-                        <img src="img/moto3.png" class="card-img-top">
-                        <h1 class="card-title pricing-card-title precio">R$<span class="">37.900</span></h1>
-
-                        <ul class="list-unstyled mt-3 mb-4">
-                            <li></li>
-                            <li>MOTOR</li>
-                            <li>PAINEL MULTICOLOR + FULL LED</li>
-                            <li>TECNOLOGIA TBW</li>
-                        </ul>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="card-deck mb-3 text-center">
-
-                <div class="card mb-4 shadow-sm">
-                    <div class="card-header">
-                        <h4 class="my-0 font-weight-bold">XRE190</h4>
-                    </div>
-                    <div class="card-body">
-                        <img src="img/moto4.png" class="card-img-top">
-                        <h1 class="card-title pricing-card-title precio">R$<span class="">37.900</span></h1>
-
-                        <ul class="list-unstyled mt-3 mb-4">
-                            <li></li>
-                            <li>MOTOR</li>
-                            <li>PAINEL MULTICOLOR + FULL LED</li>
-                            <li>TECNOLOGIA TBW</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="card mb-4 shadow-sm">
-                    <div class="card-header">
-                        <h4 class="my-0 font-weight-bold">CB 500X</h4>
-                    </div>
-                    <div class="card-body">
-                        <img src="img/moto5.png" class="card-img-top">
-                        <h1 class="card-title pricing-card-title precio">R$<span class="">37.900</span></h1>
-
-                        <ul class="list-unstyled mt-3 mb-4">
-                            <li></li>
-                            <li>MOTOR</li>
-                            <li>PAINEL MULTICOLOR + FULL LED</li>
-                            <li>TECNOLOGIA TBW</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="card mb-4 shadow-sm">
-                    <div class="card-header">
-                        <h4 class="my-0 font-weight-bold">XRE190</h4>
-                    </div>
-                    <div class="card-body">
-                        <img src="img/moto6.png" class="card-img-top">
-                        <h1 class="card-title pricing-card-title precio">R$<span class="">37.900</span></h1>
-
-                        <ul class="list-unstyled mt-3 mb-4">
-                            <li></li>
-                            <li>MOTOR</li>
-                            <li>PAINEL MULTICOLOR + FULL LED</li>
-                            <li>TECNOLOGIA TBW</li>
-                        </ul>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="card-deck mb-3 text-center">
-
-                <div class="card mb-4 shadow-sm">
-                    <div class="card-header">
-                        <h4 class="my-0 font-weight-bold">NXR 160 Bros ESDD</h4>
-                    </div>
-                    <div class="card-body">
-                        <img src="img/moto7.png" class="card-img-top">
-                        <h1 class="card-title pricing-card-title precio">R$<span class="">37.900</span></h1>
-
-                        <ul class="list-unstyled mt-3 mb-4">
-                            <li></li>
-                            <li>MOTOR</li>
-                            <li>PAINEL MULTICOLOR + FULL LED</li>
-                            <li>TECNOLOGIA TBW</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="card mb-4 shadow-sm">
-                    <div class="card-header">
-                        <h4 class="my-0 font-weight-bold">CB 500F</h4>
-                    </div>
-                    <div class="card-body">
-                        <img src="img/moto8.png" class="card-img-top">
-                        <h1 class="card-title pricing-card-title precio">R$<span class="">37.900</span></h1>
-
-                        <ul class="list-unstyled mt-3 mb-4">
-                            <li></li>
-                            <li>MOTOR</li>
-                            <li>PAINEL MULTICOLOR + FULL LED</li>
-                            <li>TECNOLOGIA TBW</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="card mb-4 shadow-sm">
-                    <div class="card-header">
-                        <h4 class="my-0 font-weight-bold">CB 650R</h4>
-                    </div>
-                    <div class="card-body">
-                        <img src="img/moto9.png" class="card-img-top">
-                        <h1 class="card-title pricing-card-title precio">R$<span class="">37.900</span></h1>
-
-                        <ul class="list-unstyled mt-3 mb-4">
-                            <li></li>
-                            <li>MOTOR</li>
-                            <li>PAINEL MULTICOLOR + FULL LED</li>
-                            <li>TECNOLOGIA TBW</li>
-                        </ul>
-                    </div>
-                </div>
-
-            </div>
+             </div>
         </div>
         <div class="buttons" style="margin-left: 370px; margin-bottom: 20px;">
               <a href="../index.php" class="previous" style="margin-left:50px ;">&laquo; Anterior</a>
@@ -247,9 +116,7 @@ require '../init.php';
     <script src="js/jquery-3.4.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/sweetalert2.min.js"></script>
-    </div>
-    </div>
-</div>
+
 
 </body>
 </html>

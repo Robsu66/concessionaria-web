@@ -68,7 +68,7 @@ require '../init.php';
 
             <div class="card-deck mb-4 text-center">
 
-                <div class="card mb- shadow-sm">
+                <div class="card mb-4 shadow-sm">
                     <div class="card-header">
                         <h4 class="my-0 font-weight-bold">CG 160 Cargo</h4>
                     </div>
