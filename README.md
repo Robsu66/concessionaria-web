@@ -1,7 +1,6 @@
 # concessionaria-web
 dia 15/12: feita a atualização na lógica da loja (carrinho.php).
-
-
+dia 21/12: galves testeando o trabalho em equipe;
 
 
 
